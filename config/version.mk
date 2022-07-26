@@ -23,8 +23,12 @@ SPARK_BUILD_TYPE ?= UNOFFICIAL
 
 # Only include Updater for official, weeklies, CI and nightly builds
 ifeq ($(filter-out OFFICIAL Official WEEKLIES NIGHTLY CI,$(SPARK_BUILD_TYPE)),)
-    PRODUCT_PACKAGES += \
+
+ifeq ($(TARGET_OTA),true)
+        PRODUCT_PACKAGES += \
         Updates
+endif
+
 endif
 
 # Sign builds if building an official, weekly, CI and nightly build
